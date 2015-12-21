@@ -1,0 +1,24 @@
+{
+  "generator-jhipster": {
+    "baseName": "health",
+    "packageName": "com.csg.health",
+    "packageFolder": "com/csg/health",
+    "authenticationType": "session",
+    "hibernateCache": "ehcache",
+    "clusteredHttpSession": "no",
+    "websocket": "spring-websocket",
+    "databaseType": "sql",
+    "devDatabaseType": "h2Disk",
+    "prodDatabaseType": "mysql",
+    "searchEngine": "elasticsearch",
+    "useSass": false,
+    "buildTool": "maven",
+    "frontendBuilder": "grunt",
+    "enableTranslation": true,
+    "enableSocialSignIn": false,
+    "rememberMeKey": "09ea935ed1f51fa3de0281bb2d2b99cefcad380b",
+    "testFrameworks": [
+      "gatling"
+    ]
+  }
+}
