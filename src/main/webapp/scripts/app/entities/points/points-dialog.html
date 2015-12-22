@@ -1,0 +1,90 @@
+
+<form name="editForm" role="form" novalidate ng-submit="save()" show-validation>
+
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                ng-click="clear()">&times;</button>
+        <h4 class="modal-title" id="myPointsLabel" translate="healthApp.points.home.createOrEditLabel">Create or edit a Points</h4>
+    </div>
+    <div class="modal-body">
+        <jh-alert-error></jh-alert-error>
+        <div class="form-group">
+            <label for="id" translate="global.field.id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                    ng-model="points.id" readonly />
+        </div>
+        <div class="form-group form-inline">
+            <label class="control-label" translate="healthApp.points.date" for="field_date">Date</label>
+            <input id="field_date" type="text" class="form-control" uib-datepicker-popup="{{dateformat}}" ng-model="points.date" is-open="datePickerForDate.status.opened"
+            />
+            <!--<span class="input-group-btn">-->
+                <button type="button" class="btn btn-default" ng-click="datePickerForDateOpen($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+            <!--</span>-->
+        </div>
+        <div class="form-group">
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox" ng-model="points.exercise" id="field_exercise"
+                           ng-true-value="1" ng-false-value="0">
+                    <span class="checkbox-material"></span>
+                    <label class="control-label" translate="healthApp.points.exercise" for="field_exercise">
+                        Exercise
+                    </label>
+                </label>
+            </div>
+            <div ng-show="editForm.exercise.$invalid">
+                <p class="help-block"
+                    ng-show="editForm.exercise.$error.required" translate="entity.validation.required">
+                    This field is required.
+                </p>
+                <p class="help-block"
+                    ng-show="editForm.exercise.$error.number" translate="entity.validation.number">
+                    This field should be a number.
+                </p>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox" ng-model="points.meals" id="field_meals"
+                           ng-true-value="1" ng-false-value="0">
+                    <span class="checkbox-material"></span>
+                    <label class="control-label" translate="healthApp.points.meals" for="field_meals">Meals</label>
+                </label>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox" ng-model="points.alcohol" id="field_alcohol"
+                           ng-true-value="1" ng-false-value="0">
+                    <span class="checkbox-material"></span>
+                    <label class="control-label" translate="healthApp.points.alcohol" for="field_alcohol">Alcohol</label>
+                </label>
+            </div>
+
+        </div>
+        <div class="form-group">
+
+            <label class="control-label" translate="healthApp.points.notes" for="field_notes">Notes</label>
+            <input type="text" class="form-control" name="notes" id="field_notes"
+                    ng-model="points.notes"
+                     />
+        </div>
+
+        <div class="form-group" has-authority="ROLE_ADMIN">
+            <label translate="healthApp.points.user" for="field_user">user</label>
+            <select class="form-control" id="field_user" name="user" ng-model="points.user" ng-options="user as user.login for user in users track by user.id">
+                <option value=""></option>
+            </select>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="clear()">
+            <span class="glyphicon glyphicon-ban-circle"></span>&nbsp;<span translate="entity.action.cancel">Cancel</span>
+        </button>
+        <button type="submit" ng-disabled="editForm.$invalid || isSaving" class="btn btn-primary">
+            <span class="glyphicon glyphicon-save"></span>&nbsp;<span translate="entity.action.save">Save</span>
+        </button>
+    </div>
+</form>

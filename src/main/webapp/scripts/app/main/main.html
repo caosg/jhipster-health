@@ -12,6 +12,45 @@
                     You are logged in as user "{{account.login}}".
                 </div>
 
+
+                <div ng-switch-when="true">
+                    <!-- this points per week-->
+                    <div class="row">
+                        <div class="col-md-6 col-xs-5">
+                            <h4 translate="main.points.thisWeek" class="m-t-sm hidden-xs"
+                                translate-values="{date: '{{pointsThisWeek.week | date: 'longDate'}}'}">
+                                Points for the week of {{pointsThisWeek.week | date: 'longDate'}}:
+                            </h4>
+                            <h4 translate="main.points.thisWeekMobile" class="m-t-sm visible-xs">
+                                Points for {{pointsThisWeek.week | date: 'longDate'}}:
+                            </h4>
+                        </div>
+                        <div class="col-md-4 text-right">
+                            <a ui-sref="points.add" class="btn btn-primary btn-raised m-n m-b-xs">Add Points</a>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-10">
+                            <div class="progress progress-lg" ng-show="pointsThisWeek.points">
+                                <div class="progress-bar progress-bar-striped" role="progressbar"
+                                     ng-class="{'progress-bar-success': pointsThisWeek.points >= preferences.weeklyGoal,
+                                                'progress-bar-danger': pointsThisWeek.points < 10,
+                                                'progress-bar-warning': pointsThisWeek.points > 10 && pointsThisWeek.points < preferences.weeklyGoal}"
+                                     aria-valuenow="{{pointsThisWeek.points}}"
+                                     aria-valuemin="0" aria-valuemax="21" style="width:{{pointsPercentage}}%">
+                                    <span ng-show="pointsThisWeek.points">
+                                        {{pointsThisWeek.points}} / Goal: {{preferences.weeklyGoal}}
+                                    </span>
+                                    <span class="sr-only">{{pointsPercentage}} points this week</span>
+                                </div>
+                            </div>
+                            <alert type="info" ng-hide="pointsThisWeek.points">
+                                No points yet this week, better get moving!
+                            </alert>
+                        </div>
+                    </div>
+                </div>
+
                 <div class="alert alert-warning" ng-switch-when="false" translate="global.messages.info.authenticated">
                     If you want to <a class="alert-link" href="#/login">sign in</a>, you can try the default accounts:<br/>- Administrator (login="admin" and password="admin") <br/>- User (login="user" and password="user").
                 </div>

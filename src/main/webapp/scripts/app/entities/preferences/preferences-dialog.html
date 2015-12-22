@@ -1,0 +1,63 @@
+
+<form name="editForm" role="form" novalidate ng-submit="save()" show-validation>
+
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                ng-click="clear()">&times;</button>
+        <h4 class="modal-title" id="myPreferencesLabel" translate="healthApp.preferences.home.createOrEditLabel">Create or edit a Preferences</h4>
+    </div>
+    <div class="modal-body">
+        <jh-alert-error></jh-alert-error>
+        <div class="form-group">
+            <label for="id" translate="global.field.id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                    ng-model="preferences.id" readonly />
+        </div>
+        <div class="form-group">
+            <label class="control-label" translate="healthApp.preferences.weeklyGoal" for="field_weeklyGoal">weeklyGoal</label>
+            <input type="number" class="form-control" name="weeklyGoal" id="field_weeklyGoal"
+                    ng-model="preferences.weeklyGoal"
+                    required min="10" max="100" />
+            <div ng-show="editForm.weeklyGoal.$invalid">
+                <p class="help-block"
+                    ng-show="editForm.weeklyGoal.$error.required" translate="entity.validation.required">
+                    This field is required.
+                </p>
+                <p class="help-block"
+                    ng-show="editForm.weeklyGoal.$error.min" translate="entity.validation.min" translate-value-min="10">
+                    This field should be more than 10.
+                </p>
+                <p class="help-block"
+                    ng-show="editForm.weeklyGoal.$error.max" translate="entity.validation.max" translate-value-max="21">
+                    This field cannot be more than 100.
+                </p>
+                <p class="help-block"
+                    ng-show="editForm.weeklyGoal.$error.number" translate="entity.validation.number">
+                    This field should be a number.
+                </p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label" translate="healthApp.preferences.weightUnits" for="field_weightUnits">weightUnits</label>
+            <select class="form-control" name="weightUnits" ng-model="preferences.weightUnits" id="field_weightUnits" required>
+                <option value="kg" translate="healthApp.Units.kg">kg</option>
+                <option value="lb" translate="healthApp.Units.lb">lb</option>
+            </select>
+            <div ng-show="editForm.weightUnits.$invalid">
+                <p class="help-block"
+                    ng-show="editForm.weightUnits.$error.required" translate="entity.validation.required">
+                    This field is required.
+                </p>
+            </div>
+        </div>
+
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="clear()">
+            <span class="glyphicon glyphicon-ban-circle"></span>&nbsp;<span translate="entity.action.cancel">Cancel</span>
+        </button>
+        <button type="submit" ng-disabled="editForm.$invalid || isSaving" class="btn btn-primary">
+            <span class="glyphicon glyphicon-save"></span>&nbsp;<span translate="entity.action.save">Save</span>
+        </button>
+    </div>
+</form>

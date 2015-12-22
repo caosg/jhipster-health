@@ -10,6 +10,10 @@
         <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
         <!-- build:css assets/styles/vendor.css -->
         <!-- bower:css -->
+        <link rel="stylesheet" href="bower_components/angular-loading-bar/build/loading-bar.css" />
+        <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" />
+        <link rel="stylesheet" href="bower_components/bootstrap-material-design/dist/css/bootstrap-material-design.css" />
+        <link rel="stylesheet" href="bower_components/bootstrap-material-design/dist/css/ripples.css" />
         <!-- endbower -->
         <!-- endbuild -->
         <!-- build:css assets/styles/main.css -->
@@ -42,6 +46,33 @@
 
         <!-- build:js scripts/vendor.js -->
         <!-- bower:js -->
+        <script src="bower_components/jquery/dist/jquery.js"></script>
+        <script src="bower_components/angular/angular.js"></script>
+        <script src="bower_components/angular-aria/angular-aria.js"></script>
+        <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
+        <script src="bower_components/angular-cache-buster/angular-cache-buster.js"></script>
+        <script src="bower_components/angular-cookies/angular-cookies.js"></script>
+        <script src="bower_components/angular-dynamic-locale/src/tmhDynamicLocale.js"></script>
+        <script src="bower_components/angular-local-storage/dist/angular-local-storage.js"></script>
+        <script src="bower_components/angular-loading-bar/build/loading-bar.js"></script>
+        <script src="bower_components/angular-resource/angular-resource.js"></script>
+        <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
+        <script src="bower_components/angular-translate/angular-translate.js"></script>
+        <script src="bower_components/messageformat/messageformat.js"></script>
+        <script src="bower_components/angular-translate-interpolation-messageformat/angular-translate-interpolation-messageformat.js"></script>
+        <script src="bower_components/angular-translate-loader-partial/angular-translate-loader-partial.js"></script>
+        <script src="bower_components/angular-translate-storage-cookie/angular-translate-storage-cookie.js"></script>
+        <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
+        <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
+        <script src="bower_components/json3/lib/json3.js"></script>
+        <script src="bower_components/ng-file-upload/ng-file-upload.js"></script>
+        <script src="bower_components/ngInfiniteScroll/build/ng-infinite-scroll.js"></script>
+        <script src="bower_components/sockjs-client/dist/sockjs.js"></script>
+        <script src="bower_components/stomp-websocket/lib/stomp.min.js"></script>
+        <script src="bower_components/arrive/src/arrive.js"></script>
+        <script src="bower_components/bootstrap-sass/assets/javascripts/bootstrap.js"></script>
+        <script src="bower_components/bootstrap-material-design/dist/js/material.js"></script>
+        <script src="bower_components/bootstrap-material-design/dist/js/ripples.js"></script>
         <!-- endbower -->
         <!-- endbuild -->
 
@@ -130,6 +161,34 @@
     <script src="scripts/app/admin/tracker/tracker.js"></script>
     <script src="scripts/app/admin/tracker/tracker.controller.js"></script>
     <script src="scripts/components/tracker/tracker.service.js"></script>
+    <script src="scripts/app/entities/points/points.js"></script>
+    <script src="scripts/app/entities/points/points.controller.js"></script>
+    <script src="scripts/app/entities/points/points-dialog.controller.js"></script>
+    <script src="scripts/app/entities/points/points-delete-dialog.controller.js"></script>
+    <script src="scripts/app/entities/points/points-detail.controller.js"></script>
+    <script src="scripts/components/entities/points/points.service.js"></script>
+    <script src="scripts/components/entities/points/points.search.service.js"></script>
+    <script src="scripts/app/entities/weight/weight.js"></script>
+    <script src="scripts/app/entities/weight/weight.controller.js"></script>
+    <script src="scripts/app/entities/weight/weight-dialog.controller.js"></script>
+    <script src="scripts/app/entities/weight/weight-delete-dialog.controller.js"></script>
+    <script src="scripts/app/entities/weight/weight-detail.controller.js"></script>
+    <script src="scripts/components/entities/weight/weight.service.js"></script>
+    <script src="scripts/components/entities/weight/weight.search.service.js"></script>
+    <script src="scripts/app/entities/bloodPressure/bloodPressure.js"></script>
+    <script src="scripts/app/entities/bloodPressure/bloodPressure.controller.js"></script>
+    <script src="scripts/app/entities/bloodPressure/bloodPressure-dialog.controller.js"></script>
+    <script src="scripts/app/entities/bloodPressure/bloodPressure-delete-dialog.controller.js"></script>
+    <script src="scripts/app/entities/bloodPressure/bloodPressure-detail.controller.js"></script>
+    <script src="scripts/components/entities/bloodPressure/bloodPressure.service.js"></script>
+    <script src="scripts/components/entities/bloodPressure/bloodPressure.search.service.js"></script>
+    <script src="scripts/app/entities/preferences/preferences.js"></script>
+    <script src="scripts/app/entities/preferences/preferences.controller.js"></script>
+    <script src="scripts/app/entities/preferences/preferences-dialog.controller.js"></script>
+    <script src="scripts/app/entities/preferences/preferences-delete-dialog.controller.js"></script>
+    <script src="scripts/app/entities/preferences/preferences-detail.controller.js"></script>
+    <script src="scripts/components/entities/preferences/preferences.service.js"></script>
+    <script src="scripts/components/entities/preferences/preferences.search.service.js"></script>
     <!-- endbuild -->
 </body>
 </html>

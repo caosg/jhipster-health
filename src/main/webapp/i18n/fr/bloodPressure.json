@@ -1,0 +1,25 @@
+{
+    "healthApp": {
+        "bloodPressure" : {
+            "home": {
+                "title": "BloodPressures",
+                "createLabel": "Créer un nouveau BloodPressure",
+                "createOrEditLabel": "Créer ou éditer un BloodPressure"
+            },
+            "created": "Un nouveau BloodPressure a été créé avec l'identifiant {{ param }}",
+            "updated": "Le BloodPressure avec l'identifiant {{ param }} a été mis à jour",
+            "deleted": "Le BloodPressure avec l'identifiant {{ param }} a été supprimé",
+            "delete": {
+                "question": "Etes-vous certain de vouloir supprimer le BloodPressure {{ id }} ?"
+            },
+            "detail": {
+                "title": "BloodPressure"
+            },
+            "timestamp": "Timestamp",
+            "systolic": "Systolic",
+            "diastolic": "Diastolic",
+            "user": "User"
+        }
+    }
+}
+

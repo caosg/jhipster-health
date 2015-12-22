@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+
+    <property name="now" value="now()" dbms="mysql,h2"/>
+    <property name="now" value="current_timestamp" dbms="postgresql"/>
+    <property name="now" value="sysdate" dbms="oracle"/>
+
+    <property name="autoIncrement" value="true" dbms="mysql,h2,postgresql,oracle"/>
+
+    <property name="floatType" value="float4" dbms="postgresql, h2"/>
+    <property name="floatType" value="float" dbms="mysql, oracle"/>
+
+    <!--
+        Added the entity Preferences.
+    -->
+    <changeSet id="20151221132536" author="jhipster">
+        <createTable tableName="preferences">
+            <column name="id" type="bigint" autoIncrement="${autoIncrement}">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="weekly_goal" type="integer">
+                <constraints nullable="false" />
+            </column>
+            <column name="weight_units" type="varchar(255)">
+                <constraints nullable="false" />
+            </column>
+        </createTable>
+        
+    </changeSet>
+
+    <!-- Added the preferences field to User -->
+    <changeSet author="jhipster" id="1439916664921-1">
+        <addColumn tableName="jhi_user">
+            <column name="preferences_id" type="bigint"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="jhipster" id="1439916664921-2">
+         <addForeignKeyConstraint baseColumnNames="preferences_id" baseTableName="jhi_user"
+                             constraintName="FK_1r5e40mq4hwtlyd9lemghc8su"
+                             referencedColumnNames="id"
+                             referencedTableName="preferences"/>
+    </changeSet>
+
+</databaseChangeLog>

@@ -1,0 +1,65 @@
+<div>
+    <h2 translate="healthApp.bloodPressure.home.title">BloodPressures</h2>
+    <jh-alert></jh-alert>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4">
+                <button class="btn btn-primary" ui-sref="bloodPressure.new">
+                    <span class="glyphicon glyphicon-flash"></span> <span translate="healthApp.bloodPressure.home.createLabel">Create a new BloodPressure</span>
+                </button>
+            </div>
+            <div class="col-md-8">
+                <form name="searchForm" class="form-inline">
+                    <div class="form-group">
+                        <input type="text" class="form-control" ng-model="searchQuery" id="searchQuery" placeholder="query">
+                    </div>
+                    <button class="btn btn-info" ng-click="search()"><span class="glyphicon glyphicon-search"></span> <span>Search a BloodPressure</span>
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="table-responsive">
+        <table class="table table-striped">
+            <thead>
+                <tr jh-sort="predicate" ascending="reverse" callback="reset()">
+                    <th jh-sort-by="id"><span translate="global.field.id">ID</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="timestamp"><span translate="healthApp.bloodPressure.timestamp">Timestamp</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="systolic"><span translate="healthApp.bloodPressure.systolic">Systolic</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="diastolic"><span translate="healthApp.bloodPressure.diastolic">Diastolic</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="user.login"><span translate="healthApp.bloodPressure.user">user</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody infinite-scroll="loadPage(page + 1)" infinite-scroll-disabled="links['last'] == page">
+                <tr ng-repeat="bloodPressure in bloodPressures track by bloodPressure.id">
+                    <td><a ui-sref="bloodPressure.detail({id:bloodPressure.id})">{{bloodPressure.id}}</a></td>
+                    <td>{{bloodPressure.timestamp | date:'medium'}}</td>
+                    <td>{{bloodPressure.systolic}}</td>
+                    <td>{{bloodPressure.diastolic}}</td>
+                    <td>
+                        {{bloodPressure.user.login}}
+                    </td>
+                    <td>
+                        <button type="submit"
+                                ui-sref="bloodPressure.detail({id:bloodPressure.id})"
+                                class="btn btn-info btn-sm">
+                            <span class="glyphicon glyphicon-eye-open"></span>&nbsp;<span translate="entity.action.view"> View</span>
+                        </button>
+                        <button type="submit"
+                                ui-sref="bloodPressure.edit({id:bloodPressure.id})"
+                                class="btn btn-primary btn-sm">
+                            <span class="glyphicon glyphicon-pencil"></span>&nbsp;<span translate="entity.action.edit"> Edit</span>
+                        </button>
+                        <button type="submit"
+                                ui-sref="bloodPressure.delete({id:bloodPressure.id})"
+                                class="btn btn-danger btn-sm">
+                            <span class="glyphicon glyphicon-remove-circle"></span>&nbsp;<span translate="entity.action.delete"> Delete</span>
+                        </button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

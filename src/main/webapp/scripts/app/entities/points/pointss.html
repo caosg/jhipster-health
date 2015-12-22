@@ -1,0 +1,94 @@
+<div>
+
+    <jh-alert></jh-alert>
+    <!--<div class="container">-->
+        <div class="row">
+            <div class="col-md-4">
+                <h2 translate="healthApp.points.home.title">Points</h2>
+            </div>
+            <div class="col-md-8 text-right">
+                <form name="searchForm" class="form-inline">
+                    <div class="form-group">
+                        <input type="text" class="form-control" ng-model="searchQuery" id="searchQuery"
+                               placeholder="query">
+                    </div>
+                    <div class="form-group">
+                        <button class="btn btn-info btn-sm" ng-click="search()">
+                            <i class="glyphicon glyphicon-search"></i>
+                        </button>
+                    </div>
+                    <div class="form-group">
+                        <button class="btn btn-primary btn-sm" ui-sref="points.new">
+                            <i class="glyphicon glyphicon-plus"></i>
+                        </button>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    <!--</div>-->
+
+    <div class="table-responsive">
+        <table class="table table-striped">
+            <thead>
+                <tr jh-sort="predicate" ascending="reverse" callback="reset()">
+                    <!--<th jh-sort-by="id"><span translate="global.field.id">ID</span> <span class="glyphicon glyphicon-sort"></span></th>-->
+                    <th jh-sort-by="date"><span translate="healthApp.points.date">Date</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="exercise"><span translate="healthApp.points.exercise">Exercise</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="meals"><span translate="healthApp.points.meals">Meals</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="alcohol"><span translate="healthApp.points.alcohol">Alcohol</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="notes"><span translate="healthApp.points.notes">Notes</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="user.login"><span translate="healthApp.points.user">user</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody infinite-scroll="loadPage(page + 1)" infinite-scroll-disabled="links['last'] == page">
+                <tr ng-repeat="points in pointss track by points.id">
+                    <!--<td class="text-nowrap"><a ui-sref="points.detail({id:points.id})">{{points.id}}</a></td>-->
+                    <td class="text-nowrap"><a ui-sref="points.detail({id:points.id})">{{points.date | date:'short'}}</a></td>
+                    <td class="text-center">
+                        <i class="glyphicon"
+                           ng-class="{'glyphicon-ok text-success': points.exercise,
+                    'glyphicon-remove text-danger': !points.exercise}"></i>
+                    </td>
+                    <td class="text-center">
+                        <i class="glyphicon"
+                           ng-class="{'glyphicon-ok text-success': points.meals,
+                    'glyphicon-remove text-danger': !points.meals}"></i>
+                    </td>
+                    <td class="text-center">
+                        <i class="glyphicon"
+                           ng-class="{'glyphicon-ok text-success': points.alcohol,
+'glyphicon-remove text-danger': !points.alcohol}"></i>
+                    </td>
+                    <td>
+                        {{points.notes}}
+                    </td>
+                    <td>
+                        {{points.user.login}}
+                    </td>
+                    <td>
+                        <div class="btn-group m-n">
+                            <button type="submit"
+                                    ui-sref="points.detail({id:points.id})"
+                                    class="btn btn-info btn-sm">
+                                <span class="glyphicon glyphicon-eye-open"></span>&nbsp;<span translate="entity.action.view"> View</span>
+                            </button>
+                            <button type="submit"
+                                    ui-sref="points.edit({id:points.id})"
+                                    class="btn btn-primary btn-sm">
+                                <span class="glyphicon glyphicon-pencil"></span>&nbsp;<span translate="entity.action.edit"> Edit</span>
+                            </button>
+                            <button type="submit"
+                                    ui-sref="points.delete({id:points.id})"
+                                    class="btn btn-danger btn-sm">
+                                <span class="glyphicon glyphicon-remove-circle"></span>&nbsp;<span translate="entity.action.delete"> Delete</span>
+                            </button>
+                        </div>
+
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

@@ -1,0 +1,76 @@
+
+<div>
+    <h2><span translate="healthApp.points.detail.title">Points</span> {{points.id}}</h2>
+    <div class="table-responsive">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th translate="entity.detail.field">Field</th>
+                <th translate="entity.detail.value">Value</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>
+                    <span translate="healthApp.points.date">Date</span>
+                </td>
+                <td>
+                    <span class="form-control-static">{{points.date | date:'mediumDate'}}</span>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span translate="healthApp.points.exercise">Exercise</span>
+                </td>
+                <td>
+                    <i class="glyphicon"
+                          ng-class="{'glyphicon-ok text-success': points.exercise,
+'glyphicon-remove text-danger': !points.exercise}"></i>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span translate="healthApp.points.meals">Meals</span>
+                </td>
+                <td>
+                    <i class="glyphicon"
+                       ng-class="{'glyphicon-ok text-success': points.meals,
+                    'glyphicon-remove text-danger': !points.meals}"></i>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span translate="healthApp.points.alcohol">Alcohol</span>
+                </td>
+                <td>
+                    <i class="glyphicon"
+                       ng-class="{'glyphicon-ok text-success': points.alcohol,
+                    'glyphicon-remove text-danger': !points.alcohol}"></i>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span translate="healthApp.points.notes">Notes</span>
+                </td>
+                <td>
+                    <span class="form-control-static">{{points.notes}}</span>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span translate="healthApp.points.user">user</span>
+                </td>
+                <td>
+                    {{points.user.login}}
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <button type="submit"
+            onclick="window.history.back()"
+            class="btn btn-info">
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span translate="entity.action.back"> Back</span>
+    </button>
+</div>
