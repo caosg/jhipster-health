@@ -1,8 +1,5 @@
 package com.csg.health.web.rest.dto;
 
-import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
-
 import java.time.LocalDate;
 
 /**

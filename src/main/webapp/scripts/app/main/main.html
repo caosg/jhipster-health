@@ -49,6 +49,58 @@
                             </alert>
                         </div>
                     </div>
+
+                    <!--bloodpressure chart--->
+                    <div class="row m-t-sm">
+                        <div class="col-md-6 col-xs-3 text-nowrap">
+                            <h4 class="m-t-md hidden-xs" translate="main.bloodPressure">Blood Pressure:</h4>
+                            <h4 class="m-t-md visible-xs" translate="main.bloodPressureMobile">BP:</h4>
+                        </div>
+                        <div class="col-md-4 text-right">
+                            <a ui-sref="bloodPressure.add" class="btn btn-default btn-sm btn-raised">
+                                Add Blood Pressure</a>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-10">
+                            <span ng-if="bpReadings.readings.length">
+                                <nvd3 options="bpOptions" data="bpData" class="with-3d-shadow with-transitions"></nvd3>
+                            </span>
+                            <span ng-if="!bpReadings.readings.length">
+                                <alert type="info">No blood pressure readings found.</alert>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6 col-xs-6">
+                            <h4 class="m-t-md" translate="main.weight">Weight:</h4>
+                        </div>
+                        <div class="col-md-4 text-right">
+                            <a ui-sref="weight.add" class="btn btn-default btn-sm btn-raised">Add Weight</a>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-10">
+                            <span ng-if="weights.weighIns.length">
+                                <nvd3 options="weightOptions" data="weightData" class="with-3d-shadow with-transitions"></nvd3>
+                            </span>
+                            <span ng-if="!weights.weighIns.length">
+                                <alert type="info">No weigh-ins found.</alert>
+                            </span>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <p class="m-t-md col-md-10">
+                            <a ui-sref="preferences.add" class="pull-right">Edit Preferences</a>
+                            <a ui-sref="history">View History</a>
+                        </p>
+                    </div>
+
+                    <p translate="main.logged.message" translate-values="{username: '{{account.login}}'}"
+                       style="border-top: 1px solid silver; padding-top: 5px; margin-top: 40px">
+                        You are logged in as user "{{account.login}}".
+                    </p>
                 </div>
 
                 <div class="alert alert-warning" ng-switch-when="false" translate="global.messages.info.authenticated">

@@ -5,6 +5,7 @@ angular.module('healthApp')
         return $resource('api/pointss/:id', {}, {
             'query': { method: 'GET', isArray: true},
             'thisWeek': { method: 'GET', isArray: false, url: 'api/points-this-week'},
+            'byMonth': { method: 'GET', isArray: false, url: 'api/points-by-month/:month'},
             'get': {
                 method: 'GET',
                 transformResponse: function (data) {

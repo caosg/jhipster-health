@@ -17,7 +17,7 @@
             <label class="control-label" translate="healthApp.preferences.weeklyGoal" for="field_weeklyGoal">weeklyGoal</label>
             <input type="number" class="form-control" name="weeklyGoal" id="field_weeklyGoal"
                     ng-model="preferences.weeklyGoal"
-                    required min="10" max="100" />
+                    required min="0" max="21" />
             <div ng-show="editForm.weeklyGoal.$invalid">
                 <p class="help-block"
                     ng-show="editForm.weeklyGoal.$error.required" translate="entity.validation.required">
@@ -25,11 +25,11 @@
                 </p>
                 <p class="help-block"
                     ng-show="editForm.weeklyGoal.$error.min" translate="entity.validation.min" translate-value-min="10">
-                    This field should be more than 10.
+                    This field should be more than 0.
                 </p>
                 <p class="help-block"
                     ng-show="editForm.weeklyGoal.$error.max" translate="entity.validation.max" translate-value-max="21">
-                    This field cannot be more than 100.
+                    This field cannot be more than 21.
                 </p>
                 <p class="help-block"
                     ng-show="editForm.weeklyGoal.$error.number" translate="entity.validation.number">

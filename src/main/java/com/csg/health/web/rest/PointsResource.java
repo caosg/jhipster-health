@@ -7,6 +7,7 @@ import com.csg.health.repository.UserRepository;
 import com.csg.health.repository.search.PointsSearchRepository;
 import com.csg.health.security.AuthoritiesConstants;
 import com.csg.health.security.SecurityUtils;
+import com.csg.health.web.rest.dto.PointsPerMonth;
 import com.csg.health.web.rest.dto.PointsPerWeek;
 import com.csg.health.web.rest.util.HeaderUtil;
 import com.csg.health.web.rest.util.PaginationUtil;
@@ -14,6 +15,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -26,6 +28,7 @@ import java.net.URI;
 import java.net.URISyntaxException;
 import java.time.DayOfWeek;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.time.temporal.TemporalAdjusters;
 import java.util.List;
 import java.util.Optional;
@@ -177,13 +180,46 @@ public class PointsResource {
         // Get last day of week
         LocalDate endOfWeek = now.with(TemporalAdjusters.nextOrSame(DayOfWeek.SUNDAY));
         log.debug("Current date:{} ,Looking for points between: {} and {}", now, startOfWeek, endOfWeek);
-        List<Points> points = pointsRepository.findAllByDateBetween(startOfWeek, endOfWeek);
-        // filter by current user and sum the points
-        Integer numPoints = points.stream()
-                .filter(p -> p.getUser().getLogin().equals(SecurityUtils.getCurrentUserLogin()))
+        List<Points> points = pointsRepository.findAllByDateBetweenAndUserLogin(startOfWeek, endOfWeek,SecurityUtils.getCurrentUserLogin());
+
+        return calculatePoints(startOfWeek,points);
+    }
+    private ResponseEntity<PointsPerWeek> calculatePoints(LocalDate startOfWeek, List<Points> points) {
+
+        Integer numPoints = 0;
+        if(points!=null)
+         numPoints=points.stream()
                 .mapToInt(p -> p.getExercise() + p.getMeals() + p.getAlcohol())
                 .sum();
+
         PointsPerWeek count = new PointsPerWeek(startOfWeek, numPoints);
         return new ResponseEntity<>(count, HttpStatus.OK);
+    }
+
+    /**
+     * GET  /points -> get all the points for a particular week.
+     */
+    @RequestMapping(value = "/points-by-week/{startDate}")
+    @Timed
+    public ResponseEntity<PointsPerWeek> getPointsByWeek(@PathVariable @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate startDate) {
+        // Get last day of week
+        LocalDate now = LocalDate.now();
+        LocalDate endOfWeek = now.with(TemporalAdjusters.previousOrSame(DayOfWeek.SUNDAY));
+        List<Points> points = pointsRepository.findAllByDateBetweenAndUserLogin(startDate, endOfWeek, SecurityUtils.getCurrentUserLogin());
+        return calculatePoints(startDate, points);
+    }
+
+    /**
+     * GET  /points -> get all the points for a particular current month.
+     */
+    @RequestMapping(value = "/points-by-month/{yearWithMonth}")
+    @Timed
+    public ResponseEntity<PointsPerMonth> getPointsByMonth(@PathVariable @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate yearWithMonth) {
+        // Get ast day of the month
+        LocalDate now = LocalDate.now();
+        LocalDate endOfMonth = now.withDayOfMonth(now.lengthOfMonth());
+        List<Points> points = pointsRepository.findAllByDateBetweenAndUserLogin(yearWithMonth, endOfMonth, SecurityUtils.getCurrentUserLogin());
+        PointsPerMonth pointsPerMonth = new PointsPerMonth(yearWithMonth, points);
+        return new ResponseEntity<>(pointsPerMonth, HttpStatus.OK);
     }
 }

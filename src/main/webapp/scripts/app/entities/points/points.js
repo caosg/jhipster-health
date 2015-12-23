@@ -62,9 +62,9 @@ angular.module('healthApp')
                             entity: function () {
                                 return {
                                     date: null,
-                                    exercise: null,
-                                    meals: null,
-                                    alcohol: null,
+                                    exercise: 0,
+                                    meals: 0,
+                                    alcohol: 0,
                                     notes: null,
                                     id: null
                                 };

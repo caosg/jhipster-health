@@ -30,13 +30,13 @@ public class Points implements Serializable {
 
     @NotNull
     @Column(name = "exercise", nullable = false)
-    private Integer exercise;
+    private Integer exercise=0;
 
     @Column(name = "meals")
-    private Integer meals;
+    private Integer meals=0;
 
     @Column(name = "alcohol")
-    private Integer alcohol;
+    private Integer alcohol=0;
 
     @Column(name = "notes")
     private String notes;

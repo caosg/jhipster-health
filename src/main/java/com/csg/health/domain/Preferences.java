@@ -28,8 +28,8 @@ public class Preferences implements Serializable {
     private Long id;
 
     @NotNull
-    @Min(value = 10)
-    @Max(value = 100)
+    @Min(value = 0)
+    @Max(value = 21)
     @Column(name = "weekly_goal", nullable = false)
     private Integer weeklyGoal;
 
